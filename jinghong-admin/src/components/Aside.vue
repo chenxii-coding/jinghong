@@ -37,18 +37,15 @@
         </el-icon>
         <template #title>用户管理</template>
       </el-menu-item>
-      <el-menu-item>
-        <el-switch v-model="isCollapse" size="default">展开</el-switch>
-      </el-menu-item>
     </el-menu>
   </div>
 </template>
 
 <script>
 export default {
+  props: ['isCollapse'],
   data() {
     return {
-      isCollapse: false,
       active: 'goods'
     }
   },

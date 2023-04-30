@@ -6,10 +6,13 @@
       </el-header>
       <el-divider style="margin: 5px 0"></el-divider>
       <el-container>
-        <el-aside width="200px">
-          <Aside></Aside>
+        <el-aside :style="asideStyle">
+          <Aside :is-collapse="isCollapse"></Aside>
+          <div style="padding: 15px 15px">
+            <el-switch v-model="isCollapse" size="small" @change="changeAside"/>
+          </div>
         </el-aside>
-        <el-main style="margin: 20px 0">
+        <el-main>
           <router-view/>
         </el-main>
       </el-container>
@@ -26,12 +29,30 @@ export default {
   components: {
     Header,
     Aside
+  },
+  data() {
+    return {
+      isCollapse: false,
+      asideStyle: {
+        width: '200px'
+      }
+    }
+  },
+  computed: {
+
+  },
+  methods: {
+    changeAside() {
+      console.log('this.isCollapse: ', this.isCollapse)
+      this.isCollapse ? this.asideStyle.width = 'auto' : this.asideStyle.width = '200px'
+    }
   }
 }
 </script>
 
 <style>
 .el-main {
+  margin: 20px 0;
   padding: 0 20px
 }
 

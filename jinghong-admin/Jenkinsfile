@@ -6,6 +6,7 @@ pipeline {
         CONTAINER_PORT = 3000
         CONTAINER_NAME = "jinghong-admin"
         DOCKER_HUB_PAIR = credentials("docker-hub-pair")
+        DOCKER_USER = "chenxii81"
     }
     stages {
         stage('拉取代码') {

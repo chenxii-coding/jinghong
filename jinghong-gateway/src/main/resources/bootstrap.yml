@@ -1,11 +1,11 @@
 server:
-  port: 9001
+  port: 8003
 spring:
   cloud:
     config:
-      uri: http://localhost:8001
+      uri: http://localhost:8002
   application:
-    name: jinghong-goods
+    name: jinghong-gateway
 eureka:
   client:
     register-with-eureka: true

@@ -3,7 +3,7 @@ pipeline {
     environment {
         IMAGE_NAME = "jinghong-server"
         IMAGE_VERSION = "v1.1.0"
-        CONTAINER_PORT = 8000
+        CONTAINER_PORT = 8001
         CONTAINER_NAME = "jinghong-server"
         DOCKER_HUB_PAIR = credentials("docker-hub-pair")
         DOCKER_TAG_PREFIX = "chenxii81"
@@ -15,7 +15,16 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/chenxii-coding/jinghong.git'
             }
         }
-        stage('打包镜像') {
+        stage('生成jar包') {
+            steps {
+                echo '📦 正在生成jar包'
+                sh 'mvn clean'
+                sh 'mvn package -DskipTests'
+                echo '🥳 成功生成jar包！'
+
+            }
+        }
+        stage('生成镜像') {
             steps {
                 sh 'docker build -t ${IMAGE_NAME}:${IMAGE_VERSION} ./${IMAGE_NAME}'
                 echo '🥳 成功生成镜像！'

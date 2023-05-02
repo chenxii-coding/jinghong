@@ -18,8 +18,8 @@ pipeline {
         stage('生成jar包') {
             steps {
                 echo '📦 正在生成jar包'
-                sh 'mvn clean'
-                sh 'mvn package -DskipTests'
+                sh 'mvn clean -f ./${IMAGE_NAME}/pom.xml'
+                sh 'mvn package -f ./${IMAGE_NAME}/pom.xml -DskipTests'
                 echo '🥳 成功生成jar包！'
 
             }

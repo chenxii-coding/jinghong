@@ -1,0 +1,23 @@
+server:
+  port: 8001
+eureka:
+  instance:
+    hostname: config8001.com
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:8000/eureka
+spring:
+  application:
+    name: jinghong-config
+  cloud:
+    config:
+      server:
+        native:
+          search-locations:
+            - classpath:configs
+  profiles:
+    active:
+      - native

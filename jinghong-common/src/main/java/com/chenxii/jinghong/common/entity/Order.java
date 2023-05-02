@@ -12,7 +12,7 @@ import lombok.Data;
  */
 @TableName(value = "order")
 @Data
-public class Order implements Serializable {
+public class Order extends BaseEntity implements Serializable {
 
     private String id;
 
@@ -23,14 +23,6 @@ public class Order implements Serializable {
     private String paidBy;
 
     private String status;
-
-    private String createdBy;
-
-    private Date createdTime;
-
-    private String updatedBy;
-
-    private Date updatedTime;
 
     private static final long serialVersionUID = 1L;
 }

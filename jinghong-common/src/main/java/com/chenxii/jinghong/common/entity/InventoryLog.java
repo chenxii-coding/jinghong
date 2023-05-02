@@ -11,7 +11,7 @@ import lombok.Data;
  */
 @TableName(value = "inventory_log")
 @Data
-public class InventoryLog implements Serializable {
+public class InventoryLog extends BaseEntity implements Serializable {
 
     private String id;
 
@@ -22,14 +22,6 @@ public class InventoryLog implements Serializable {
     private Object variation;
 
     private String type;
-
-    private String createdBy;
-
-    private Date createdTime;
-
-    private String updatedBy;
-
-    private Date updatedTime;
 
     private static final long serialVersionUID = 1L;
 

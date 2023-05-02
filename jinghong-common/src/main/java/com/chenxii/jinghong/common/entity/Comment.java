@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @TableName(value = "comment")
 @Data
-public class Comment implements Serializable {
+public class Comment extends BaseEntity implements Serializable {
 
     private String id;
 
@@ -25,14 +25,6 @@ public class Comment implements Serializable {
     private BigDecimal rate;
 
     private String image;
-
-    private String createdBy;
-
-    private Date createdTime;
-
-    private String updatedBy;
-
-    private Date updatedTime;
 
     private static final long serialVersionUID = 1L;
 

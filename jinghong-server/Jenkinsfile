@@ -1,12 +1,12 @@
 pipeline {
     agent any
     environment {
-        IMAGE_NAME = "jinghong-admin"
+        IMAGE_NAME = "jinghong-server"
         IMAGE_VERSION = "v1.1.0"
-        CONTAINER_PORT = 3000
-        CONTAINER_NAME = "jinghong-admin"
+        CONTAINER_PORT = 8000
+        CONTAINER_NAME = "jinghong-server"
         DOCKER_HUB_PAIR = credentials("docker-hub-pair")
-        DOCKER_TAG_PREFIX = "chenxii81"
+        DOCKER_USER = "chenxii81"
     }
     stages {
         stage('拉取代码') {
@@ -24,8 +24,8 @@ pipeline {
         stage('推送镜像') {
             steps {
                 sh 'docker login -u ${DOCKER_HUB_PAIR_USR} -p ${DOCKER_HUB_PAIR_PSW}'
-                sh 'docker tag ${IMAGE_NAME}:${IMAGE_VERSION} ${DOCKER_TAG_PREFIX}/${IMAGE_NAME}:${IMAGE_VERSION}'
-                sh 'docker push ${DOCKER_TAG_PREFIX}/${IMAGE_NAME}:${IMAGE_VERSION}'
+                sh 'docker tag ${IMAGE_NAME}:${IMAGE_VERSION} ${DOCKER_USER}/${IMAGE_NAME}:${IMAGE_VERSION}'
+                sh 'docker push ${DOCKER_USER}/${IMAGE_NAME}:${IMAGE_VERSION}'
                 echo '🥳 成功推送镜像'
             }
         }
@@ -55,8 +55,8 @@ pipeline {
                 }
                 echo '🚗 🌬 历史镜像处理完毕'
                 echo '💦 正在拉取镜像..'
-                sh 'docker pull ${DOCKER_TAG_PREFIX}/${IMAGE_NAME}:${IMAGE_VERSION}'
-                sh("docker run -dp ${CONTAINER_PORT}:${CONTAINER_PORT} --name ${CONTAINER_NAME} ${DOCKER_TAG_PREFIX}/${IMAGE_NAME}:${IMAGE_VERSION}")
+                sh 'docker pull ${DOCKER_USER}/${IMAGE_NAME}:${IMAGE_VERSION}'
+                sh("docker run -dp ${CONTAINER_PORT}:${CONTAINER_PORT} --name ${CONTAINER_NAME} ${DOCKER_USER}/${IMAGE_NAME}:${IMAGE_VERSION}")
                 echo '🎉 部署成功！'
             }
         }

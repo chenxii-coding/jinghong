@@ -11,7 +11,7 @@ import java.util.Date;
  */
 @TableName(value = "user")
 @Data
-public class User implements Serializable {
+public class User extends BaseEntity implements Serializable {
 
     private String id;
 
@@ -26,14 +26,6 @@ public class User implements Serializable {
     private Date lastLoginTime;
 
     private String status;
-
-    private String createdBy;
-
-    private Date createdTime;
-
-    private String updatedBy;
-
-    private Date updatedTime;
 
     private static final long serialVersionUID = 1L;
 

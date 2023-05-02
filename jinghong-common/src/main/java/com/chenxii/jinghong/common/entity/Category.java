@@ -11,23 +11,15 @@ import java.util.Date;
  */
 @TableName(value = "category")
 @Data
-public class Category implements Serializable {
+public class Category extends BaseEntity implements Serializable {
 
     private String id;
 
-    private String category1;
+    private String categoryNo;
 
-    private String category2;
+    private String categoryName;
 
-    private String category3;
-
-    private String createdBy;
-
-    private Date createdTime;
-
-    private String updatedBy;
-
-    private Date updatedTime;
+    private String parentCategory;
 
     private static final long serialVersionUID = 1L;
 

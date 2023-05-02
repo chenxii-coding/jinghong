@@ -2,22 +2,50 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="generator.mapper.CategoryMapper">
+<mapper namespace="com.chenxii.jinghong.common.dao.CategoryDao">
 
     <resultMap id="BaseResultMap" type="com.chenxii.jinghong.common.entity.Category">
-            <result property="id" column="id" jdbcType="VARCHAR"/>
-            <result property="category1" column="category_1" jdbcType="VARCHAR"/>
-            <result property="category2" column="category_2" jdbcType="VARCHAR"/>
-            <result property="category3" column="category_3" jdbcType="VARCHAR"/>
-            <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
-            <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
-            <result property="updatedBy" column="updated_by" jdbcType="VARCHAR"/>
-            <result property="updatedTime" column="updated_time" jdbcType="TIMESTAMP"/>
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="categoryNo" column="category_no" jdbcType="VARCHAR"/>
+        <result property="categoryName" column="category_name" jdbcType="VARCHAR"/>
+        <result property="parentCategory" column="parent_category" jdbcType="VARCHAR"/>
+        <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
+        <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
+        <result property="updatedBy" column="updated_by" jdbcType="VARCHAR"/>
+        <result property="updatedTime" column="updated_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,category_1,category_2,
-        category_3,created_by,created_time,
+        id,category_no,category_name,
+        parent_category,created_by,created_time,
         updated_by,updated_time
     </sql>
+
+    <insert id="insert" parameterType="com.chenxii.jinghong.common.entity.Category">
+        insert into category(category_no, category_name, parent_category)
+        values (#{categoryNo},
+                #{categoryName},
+                #{parentCategory})
+    </insert>
+
+    <update id="update" parameterType="com.chenxii.jinghong.common.entity.Category">
+        update category
+        set category_name = #{categoryName}
+        where category_no = #{categoryNo}
+    </update>
+
+    <select id="queryByNo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from category
+        where category_no = #{categoryNo}
+    </select>
+
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from category
+        where 1 = 1
+        order by category_no
+    </select>
 </mapper>

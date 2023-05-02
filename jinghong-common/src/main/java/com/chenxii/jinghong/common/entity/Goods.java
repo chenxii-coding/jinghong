@@ -13,7 +13,7 @@ import lombok.Data;
  */
 @TableName(value = "goods")
 @Data
-public class Goods implements Serializable {
+public class Goods extends BaseEntity implements Serializable {
 
     private String id;
 
@@ -32,14 +32,6 @@ public class Goods implements Serializable {
     private String tags;
 
     private String isOnSale;
-
-    private String createdBy;
-
-    private Date createdTime;
-
-    private String updatedBy;
-
-    private Date updatedTime;
 
     private static final long serialVersionUID = 1L;
 

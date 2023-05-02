@@ -11,21 +11,13 @@ import lombok.Data;
  */
 @TableName(value = "inventory")
 @Data
-public class Inventory implements Serializable {
+public class Inventory extends BaseEntity implements Serializable {
 
     private String id;
 
     private String goodsNo;
 
     private Object count;
-
-    private String createdBy;
-
-    private Date createdTime;
-
-    private String updatedBy;
-
-    private Date updatedTime;
 
     private static final long serialVersionUID = 1L;
 

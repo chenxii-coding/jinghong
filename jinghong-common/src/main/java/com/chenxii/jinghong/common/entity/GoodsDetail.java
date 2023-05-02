@@ -11,7 +11,7 @@ import lombok.Data;
  */
 @TableName(value = "goods_detail")
 @Data
-public class GoodsDetail implements Serializable {
+public class GoodsDetail extends BaseEntity implements Serializable {
 
     private String id;
 
@@ -20,14 +20,6 @@ public class GoodsDetail implements Serializable {
     private String descriptionItem;
 
     private String description;
-
-    private String createdBy;
-
-    private Date createdTime;
-
-    private String updatedBy;
-
-    private Date updatedTime;
 
     private static final long serialVersionUID = 1L;
 

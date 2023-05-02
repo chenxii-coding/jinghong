@@ -2,17 +2,17 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="generator.mapper.GoodsDetailMapper">
+<mapper namespace="com.chenxii.jinghong.common.dao.GoodsDetailDao">
 
     <resultMap id="BaseResultMap" type="com.chenxii.jinghong.common.entity.GoodsDetail">
-            <result property="id" column="id" jdbcType="VARCHAR"/>
-            <result property="goodsNo" column="goods_no" jdbcType="VARCHAR"/>
-            <result property="descriptionItem" column="description_item" jdbcType="VARCHAR"/>
-            <result property="description" column="description" jdbcType="VARCHAR"/>
-            <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
-            <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
-            <result property="updatedBy" column="updated_by" jdbcType="VARCHAR"/>
-            <result property="updatedTime" column="updated_time" jdbcType="TIMESTAMP"/>
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="goodsNo" column="goods_no" jdbcType="VARCHAR"/>
+        <result property="descriptionItem" column="description_item" jdbcType="VARCHAR"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+        <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
+        <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
+        <result property="updatedBy" column="updated_by" jdbcType="VARCHAR"/>
+        <result property="updatedTime" column="updated_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">

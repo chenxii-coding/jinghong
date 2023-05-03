@@ -23,4 +23,5 @@ public interface CategoryDao {
 
     List<Category> queryAll();
 
+    int deleteByCategoryNo(@Param("categoryNo") String categoryNo);
 }

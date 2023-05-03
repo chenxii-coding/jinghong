@@ -8,12 +8,12 @@
         <result property="id" column="id" jdbcType="VARCHAR"/>
         <result property="goodsNo" column="goods_no" jdbcType="VARCHAR"/>
         <result property="goodsName" column="goods_name" jdbcType="VARCHAR"/>
-        <result property="category" column="category" jdbcType="VARCHAR"/>
+        <result property="categoryNo" column="categoryNo" jdbcType="VARCHAR"/>
         <result property="brand" column="brand" jdbcType="VARCHAR"/>
         <result property="price" column="price" jdbcType="NUMERIC"/>
         <result property="image" column="image" jdbcType="VARCHAR"/>
         <result property="tags" column="tags" jdbcType="VARCHAR"/>
-        <result property="isOnSale" column="is_on_sale" jdbcType="VARCHAR"/>
+        <result property="isOnSale" column="is_on_sale" jdbcType="BOOLEAN"/>
         <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
         <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
         <result property="updatedBy" column="updated_by" jdbcType="VARCHAR"/>
@@ -22,9 +22,29 @@
 
     <sql id="Base_Column_List">
         id,goods_no,goods_name,
-        category,brand,price,
+        category_no,brand,price,
         image,tags,is_on_sale,
         created_by,created_time,updated_by,
         updated_time
     </sql>
+
+    <insert id="insert" parameterType="com.chenxii.jinghong.common.entity.Goods">
+        insert into goods(goods_no, goods_name, category_no, brand, price, image, tags, is_on_sale)
+        values (#{goodsNo},
+                #{goodsName},
+                #{categoryNo},
+                #{brand},
+                #{price},
+                #{image},
+                #{tags},
+                #{isOnSale})
+    </insert>
+
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from goods
+        where 1 = 1
+        order by goods_no
+    </select>
 </mapper>

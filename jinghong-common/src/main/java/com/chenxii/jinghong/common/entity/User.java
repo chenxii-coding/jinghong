@@ -2,6 +2,7 @@ package com.chenxii.jinghong.common.entity;
 
 import com.chenxii.jinghong.common.config.TableName;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.Date;
 /**
  * @TableName user
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName(value = "user")
 @Data
 public class User extends BaseEntity implements Serializable {

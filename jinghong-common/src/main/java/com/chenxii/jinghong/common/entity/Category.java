@@ -2,6 +2,7 @@ package com.chenxii.jinghong.common.entity;
 
 import com.chenxii.jinghong.common.config.TableName;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.Date;
 /**
  * @TableName category
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName(value = "category")
 @Data
 public class Category extends BaseEntity implements Serializable {
@@ -20,6 +22,10 @@ public class Category extends BaseEntity implements Serializable {
     private String categoryName;
 
     private String parentCategory;
+
+    private String parentCategoryName;
+
+    private int level;
 
     private static final long serialVersionUID = 1L;
 

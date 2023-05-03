@@ -9,6 +9,7 @@
         <result property="goodsNo" column="goods_no" jdbcType="VARCHAR"/>
         <result property="descriptionItem" column="description_item" jdbcType="VARCHAR"/>
         <result property="description" column="description" jdbcType="VARCHAR"/>
+        <result property="index" column="index" jdbcType="INTEGER"/>
         <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
         <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
         <result property="updatedBy" column="updated_by" jdbcType="VARCHAR"/>
@@ -17,7 +18,26 @@
 
     <sql id="Base_Column_List">
         id,goods_no,description_item,
-        description,created_by,created_time,
+        description,index,created_by,created_time,
         updated_by,updated_time
     </sql>
+
+    <insert id="insertBatch" parameterType="com.chenxii.jinghong.common.entity.GoodsDetail">
+        insert into goods_detail(goods_no, description_item, description, index)
+        values
+        <foreach collection="goodsDetailList" item="item" separator=",">
+            (#{item.goodsNo},
+            #{item.descriptionItem},
+            #{item.description},
+            #{item.index})
+        </foreach>
+    </insert>
+
+    <select id="queryByGoodsNo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from goods_detail
+        where goods_no = #{goodsNo}
+        order by index
+    </select>
 </mapper>

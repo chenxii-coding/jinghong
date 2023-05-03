@@ -38,12 +38,8 @@ export default {
       }
     }
   },
-  computed: {
-
-  },
   methods: {
     changeAside() {
-      console.log('this.isCollapse: ', this.isCollapse)
       this.isCollapse ? this.asideStyle.width = 'auto' : this.asideStyle.width = '200px'
     }
   }

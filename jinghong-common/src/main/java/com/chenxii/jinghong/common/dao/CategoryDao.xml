@@ -9,6 +9,8 @@
         <result property="categoryNo" column="category_no" jdbcType="VARCHAR"/>
         <result property="categoryName" column="category_name" jdbcType="VARCHAR"/>
         <result property="parentCategory" column="parent_category" jdbcType="VARCHAR"/>
+        <result property="parentCategoryName" column="parent_category_name" jdbcType="VARCHAR"/>
+        <result property="level" column="level" jdbcType="INTEGER"/>
         <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
         <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
         <result property="updatedBy" column="updated_by" jdbcType="VARCHAR"/>
@@ -22,30 +24,60 @@
     </sql>
 
     <insert id="insert" parameterType="com.chenxii.jinghong.common.entity.Category">
-        insert into category(category_no, category_name, parent_category)
+        insert into category(category_no, category_name, parent_category, level)
         values (#{categoryNo},
                 #{categoryName},
-                #{parentCategory})
+                #{parentCategory},
+                #{level})
     </insert>
 
     <update id="update" parameterType="com.chenxii.jinghong.common.entity.Category">
         update category
-        set category_name = #{categoryName}
+        set category_name = #{categoryName},
+            parent_category = #{parentCategory},
+            level = #{level},
+            updated_time = now()
         where category_no = #{categoryNo}
     </update>
 
-    <select id="queryByNo" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
+    <delete id="deleteByCategoryNo">
+        delete
         from category
         where category_no = #{categoryNo}
+    </delete>
+
+    <select id="queryByNo" resultMap="BaseResultMap">
+        select a.id,
+               a.category_no,
+               a.category_name,
+               a.parent_category,
+               b.category_name as parent_category_name,
+               a.level,
+               a.created_by,
+               a.created_time,
+               a.updated_by,
+               a.updated_time
+        from category a
+                 left join category b
+                           on a.parent_category = b.category_no
+        where a.category_no = #{categoryNo}
+        order by a.category_no
     </select>
 
     <select id="queryAll" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from category
-        where 1 = 1
-        order by category_no
+        select a.id,
+               a.category_no,
+               a.category_name,
+               a.parent_category,
+               b.category_name as parent_category_name,
+               a.level,
+               a.created_by,
+               a.created_time,
+               a.updated_by,
+               a.updated_time
+        from category a
+                 left join category b
+                           on a.parent_category = b.category_no
+        order by a.category_no
     </select>
 </mapper>

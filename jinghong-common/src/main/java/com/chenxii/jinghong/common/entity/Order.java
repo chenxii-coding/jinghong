@@ -1,15 +1,16 @@
 package com.chenxii.jinghong.common.entity;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Date;
-
 import com.chenxii.jinghong.common.config.TableName;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * @TableName order
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName(value = "order")
 @Data
 public class Order extends BaseEntity implements Serializable {

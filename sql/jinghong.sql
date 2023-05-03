@@ -105,12 +105,12 @@ create table if not exists public.goods
     id           varchar(36)    not null default uuid_generate_v4(),
     goods_no     varchar(50)    not null,
     goods_name   varchar(100)   not null,
-    category     varchar(50)    not null,
+    category_no  varchar(50)    not null,
     brand        varchar(50)    not null,
     price        numeric(10, 2) not null default 9999999999.99,
     image        varchar(500),
     tags         varchar(150),
-    is_on_sale   varchar(1)     not null,
+    is_on_sale   bool           not null default true,
     created_by   varchar(50)    not null default 'postgres',
     created_time timestamp      not null default current_timestamp,
     updated_by   varchar(50)    not null default 'postgres',
@@ -126,6 +126,7 @@ create table if not exists public.goods_detail
     goods_no         varchar(50)  not null,
     description_item varchar(50)  not null, -- 规格名称
     description      varchar(150) not null, -- 规格
+    index            int          not null default 1,
     created_by       varchar(50)  not null default 'postgres',
     created_time     timestamp    not null default current_timestamp,
     updated_by       varchar(50)  not null default 'postgres',
@@ -240,6 +241,20 @@ create table if not exists public.favorite
     id           varchar(36) not null default uuid_generate_v4(),
     uid          varchar(20) not null,
     goods_no     varchar(50) not null,
+    created_by   varchar(50) not null default 'postgres',
+    created_time timestamp   not null default current_timestamp,
+    updated_by   varchar(50) not null default 'postgres',
+    updated_time timestamp   not null default current_timestamp
+);
+
+
+-- 编号生成
+drop table if exists public.auto_no;
+create table if not exists public.auto_no
+(
+    id           varchar(36) not null default uuid_generate_v4(),
+    type         varchar(50) not null,
+    no           int         not null default 0,
     created_by   varchar(50) not null default 'postgres',
     created_time timestamp   not null default current_timestamp,
     updated_by   varchar(50) not null default 'postgres',

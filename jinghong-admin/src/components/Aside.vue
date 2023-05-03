@@ -9,7 +9,7 @@
           </el-icon>
           <span>商品管理</span>
         </template>
-        <el-menu-item index="1-1">分类管理</el-menu-item>
+        <el-menu-item index="category">分类管理</el-menu-item>
         <el-menu-item index="goods">商品管理</el-menu-item>
         <el-menu-item index="1-3">评价管理</el-menu-item>
       </el-sub-menu>
@@ -46,7 +46,7 @@ export default {
   props: ['isCollapse'],
   data() {
     return {
-      active: 'goods'
+      active: 'category'
     }
   },
   methods: {

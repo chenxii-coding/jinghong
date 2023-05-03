@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/jinghong")
+@RequestMapping("/jinghong/api")
 public class CategoryApi {
 
     @Autowired
@@ -23,5 +23,20 @@ public class CategoryApi {
     @GetMapping("/category/{categoryNo}")
     public Response<Category> queryCategory(@PathVariable String categoryNo) {
         return categoryService.queryCategory(categoryNo);
+    }
+
+    @PutMapping("/category")
+    public Response<Void> addCategory(@RequestBody Category category) {
+        return categoryService.addCategory(category);
+    }
+
+    @PostMapping("/category")
+    public Response<Void> updateCategory(@RequestBody Category category) {
+        return categoryService.updateCategory(category);
+    }
+
+    @DeleteMapping("/category/{categoryNo}")
+    public Response<Void> delCategory(@PathVariable String categoryNo) {
+        return categoryService.deleteCategory(categoryNo);
     }
 }

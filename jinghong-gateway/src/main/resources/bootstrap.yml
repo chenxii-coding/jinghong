@@ -4,11 +4,20 @@ spring:
   cloud:
     config:
       uri: http://localhost:8002
+    gateway:
+      routes:
+        - id: jinghong-goods
+          uri: http://localhost:9001
+          predicates:
+            - Path=/jinghong/api/goods/**
+            - Path=/jinghong/api/category/**
   application:
     name: jinghong-gateway
 eureka:
+  instance:
+    hostname: jinghong-gateway
   client:
     register-with-eureka: true
-    fetch-registry: false
+    fetch-registry: true
     service-url:
       defaultZone: http://localhost:8001/eureka

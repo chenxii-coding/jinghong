@@ -1,6 +1,10 @@
 package com.chenxii.jinghong.common.dao;
 
+import com.chenxii.jinghong.common.entity.GoodsDetail;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author chenxii
@@ -11,8 +15,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface GoodsDetailDao {
 
+    int insertBatch(@Param("goodsDetailList") List<GoodsDetail> goodsDetailList);
+
+    List<GoodsDetail> queryByGoodsNo(String goodsNo);
+
 }
-
-
-
-

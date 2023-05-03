@@ -1,16 +1,18 @@
 package com.chenxii.jinghong.common.entity;
 
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Date;
-
 import com.chenxii.jinghong.common.config.TableName;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @TableName goods
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName(value = "goods")
 @Data
 public class Goods extends BaseEntity implements Serializable {
@@ -21,7 +23,7 @@ public class Goods extends BaseEntity implements Serializable {
 
     private String goodsName;
 
-    private String category;
+    private String categoryNo;
 
     private String brand;
 
@@ -31,7 +33,11 @@ public class Goods extends BaseEntity implements Serializable {
 
     private String tags;
 
-    private String isOnSale;
+    private List<String> tagsList;
+
+    private boolean isOnSale;
+
+    private List<GoodsDetail> goodsDetailList;
 
     private static final long serialVersionUID = 1L;
 

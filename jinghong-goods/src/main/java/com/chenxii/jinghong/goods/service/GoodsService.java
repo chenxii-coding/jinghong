@@ -4,6 +4,7 @@ import com.chenxii.jinghong.common.entity.Goods;
 import com.chenxii.jinghong.common.entity.Response;
 
 import java.util.List;
+import java.util.Map;
 
 public interface GoodsService {
 
@@ -14,5 +15,7 @@ public interface GoodsService {
     Response<Void> delGoods(String goodsNo);
 
     Response<List<Goods>> queryGoods();
+
+    Response<List<Map<String, Object>>> queryOnSaleGoods();
 
 }

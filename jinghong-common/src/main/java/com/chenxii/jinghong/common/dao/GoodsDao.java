@@ -18,4 +18,6 @@ public interface GoodsDao {
 
     List<Goods> queryAll();
 
+    List<Goods> queryOnSaleGoods();
+
 }

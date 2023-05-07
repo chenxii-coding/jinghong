@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/jinghong/api")
@@ -18,6 +19,11 @@ public class GoodsApi {
     @GetMapping("/goods")
     public Response<List<Goods>> queryGoods() {
         return goodsService.queryGoods();
+    }
+
+    @GetMapping("/goods/onSale")
+    public Response<List<Map<String, Object>>> queryOnSaleGoods() {
+        return goodsService.queryOnSaleGoods();
     }
 
     @PutMapping("/goods")

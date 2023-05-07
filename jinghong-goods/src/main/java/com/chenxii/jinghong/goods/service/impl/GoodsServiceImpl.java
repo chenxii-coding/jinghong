@@ -9,15 +9,16 @@ import com.chenxii.jinghong.common.entity.GoodsDetail;
 import com.chenxii.jinghong.common.entity.Response;
 import com.chenxii.jinghong.common.utils.ResponseUtil;
 import com.chenxii.jinghong.goods.service.GoodsService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Service
+@Slf4j
 public class GoodsServiceImpl implements GoodsService {
 
     @Autowired
@@ -75,5 +76,36 @@ public class GoodsServiceImpl implements GoodsService {
             }
         }
         return ResponseUtil.success(goodsList);
+    }
+
+    @Override
+    public Response<List<Map<String, Object>>> queryOnSaleGoods() {
+        List<Goods> goodsList = goodsDao.queryOnSaleGoods();
+        if (CollectionUtils.isNotEmpty(goodsList)) {
+            for (Goods goodsItem : goodsList) {
+                String tags = goodsItem.getTags();
+                if (StringUtils.isNotBlank(tags)) {
+                    goodsItem.setTagsList(Arrays.asList(tags.split("#")));
+                }
+            }
+        }
+
+        List<Map<String, Object>> resultList = new ArrayList<>(3);
+
+        Map<String, Object> typeNew = new HashMap<>();
+        typeNew.put("typeName", "新品推荐");
+        typeNew.put("goodsList", goodsList.subList(0, 10));
+        resultList.add(typeNew);
+
+        Map<String, Object> typeRecommend = new HashMap<>();
+        typeRecommend.put("typeName", "猜你喜欢");
+        typeRecommend.put("goodsList", goodsList.subList(10, 20));
+        resultList.add(typeRecommend);
+
+        Map<String, Object> typeAll = new HashMap<>();
+        typeAll.put("typeName", "所有商品");
+        typeAll.put("goodsList", goodsList);
+        resultList.add(typeAll);
+        return ResponseUtil.success(resultList);
     }
 }

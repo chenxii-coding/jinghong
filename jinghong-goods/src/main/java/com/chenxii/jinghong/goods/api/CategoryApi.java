@@ -15,27 +15,27 @@ public class CategoryApi {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("/category")
+    @GetMapping("/goods/category")
     public Response<List<Category>> queryCategory() {
         return categoryService.queryCategory();
     }
 
-    @GetMapping("/category/{categoryNo}")
+    @GetMapping("/goods/category/{categoryNo}")
     public Response<Category> queryCategory(@PathVariable String categoryNo) {
         return categoryService.queryCategory(categoryNo);
     }
 
-    @PutMapping("/category")
+    @PutMapping("/goods/category")
     public Response<Void> addCategory(@RequestBody Category category) {
         return categoryService.addCategory(category);
     }
 
-    @PostMapping("/category")
+    @PostMapping("/goods/category")
     public Response<Void> updateCategory(@RequestBody Category category) {
         return categoryService.updateCategory(category);
     }
 
-    @DeleteMapping("/category/{categoryNo}")
+    @DeleteMapping("/goods/category/{categoryNo}")
     public Response<Void> delCategory(@PathVariable String categoryNo) {
         return categoryService.deleteCategory(categoryNo);
     }

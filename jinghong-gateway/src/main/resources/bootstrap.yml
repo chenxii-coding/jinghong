@@ -7,10 +7,9 @@ spring:
     gateway:
       routes:
         - id: jinghong-goods
-          uri: http://localhost:9001
+          uri: http://localhost:8003
           predicates:
             - Path=/jinghong/api/goods/**
-            - Path=/jinghong/api/category/**
   application:
     name: jinghong-gateway
 eureka:

@@ -25,6 +25,8 @@ public class Goods extends BaseEntity implements Serializable {
 
     private String categoryNo;
 
+    private String categoryName;
+
     private String brand;
 
     private BigDecimal price;

@@ -4,6 +4,8 @@ spring:
   cloud:
     config:
       uri: http://localhost:8001
+  config:
+    import: optional:configserver:http://localhost:8002
   application:
     name: jinghong-goods
 eureka:

@@ -10,13 +10,12 @@
     <version>1.1.0</version>
 
     <properties>
+        <java.version>1.8</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.8</java.version>
-        <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
-        <spring-cloud-alibaba.version>2.2.5.RELEASE</spring-cloud-alibaba.version>
-        <spring-boot.version>2.3.12.RELEASE</spring-boot.version>
+        <spring-cloud.version>2021.0.6</spring-cloud.version>
+        <spring-boot.version>2.6.14</spring-boot.version>
     </properties>
 
     <modules>
@@ -46,6 +45,11 @@
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-client-java</artifactId>
+                <version>5.0.5</version>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>

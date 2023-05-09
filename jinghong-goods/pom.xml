@@ -46,6 +46,18 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                    <mainClass>com.chenxii.jinghong.goods.GoodsApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>

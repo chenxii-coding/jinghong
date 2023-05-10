@@ -1,7 +1,6 @@
 package com.chenxii.jinghong.common.dao;
 
 import com.chenxii.jinghong.common.entity.AutoNo;
-import com.chenxii.jinghong.common.entity.Category;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

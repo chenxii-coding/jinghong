@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://vm2:5432/jinghong
+    username: postgres
+    password: secret
+    driver-class-name: org.postgresql.Driver
+mybatis:
+  mapper-locations: classpath:*.

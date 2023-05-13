@@ -14,4 +14,6 @@ public interface AutoNoDao {
 
     int updateNo(AutoNo autoNo);
 
+    AutoNo queryByType(String type);
+
 }

@@ -24,4 +24,11 @@
         status,created_by,created_time,
         updated_by,updated_time
     </sql>
+
+    <select id="queryByUid" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from "user"
+        where uid = #{uid}
+    </select>
 </mapper>

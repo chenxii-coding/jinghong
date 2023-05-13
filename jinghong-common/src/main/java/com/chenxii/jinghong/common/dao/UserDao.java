@@ -1,5 +1,6 @@
 package com.chenxii.jinghong.common.dao;
 
+import com.chenxii.jinghong.common.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -10,6 +11,8 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface UserDao {
+
+    User queryByUid(String uid);
 
 }
 

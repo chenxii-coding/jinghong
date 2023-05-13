@@ -6,7 +6,7 @@
 
     <resultMap id="BaseResultMap" type="com.chenxii.jinghong.common.entity.AutoNo">
         <result property="id" column="id" jdbcType="VARCHAR"/>
-        <result property="type" column="category_no" jdbcType="VARCHAR"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
         <result property="no" column="no" jdbcType="VARCHAR"/>
         <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
         <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
@@ -29,4 +29,12 @@
         set no = no + 1
         where type = #{type}
     </update>
+
+    <select id="queryByType" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from auto_no
+        where type = #{type}
+        order by no desc
+    </select>
 </mapper>

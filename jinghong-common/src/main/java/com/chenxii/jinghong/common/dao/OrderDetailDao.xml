@@ -9,7 +9,7 @@
         <result property="orderNo" column="order_no" jdbcType="VARCHAR"/>
         <result property="goodsNo" column="goods_no" jdbcType="VARCHAR"/>
         <result property="price" column="price" jdbcType="NUMERIC"/>
-        <result property="count" column="count" jdbcType="OTHER"/>
+        <result property="count" column="count" jdbcType="INTEGER"/>
         <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
         <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
         <result property="updatedBy" column="updated_by" jdbcType="VARCHAR"/>
@@ -21,4 +21,23 @@
         price,count,created_by,
         created_time,updated_by,updated_time
     </sql>
+
+    <insert id="insertBatch">
+        insert into order_detail(order_no, goods_no, price, count)
+        values
+        <foreach collection="orderDetailList" item="item" separator=",">
+            (#{item.orderNo},
+            #{item.goodsNo},
+            #{item.price},
+            #{item.count})
+        </foreach>
+    </insert>
+
+    <select id="queryByOrderNo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from order_detail
+        where order_no = #{orderNo}
+        order by goods_no
+    </select>
 </mapper>

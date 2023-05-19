@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <el-link href="/">首页</el-link>
-    <el-link href="/carts">购物车</el-link>
+    <el-link href="/cart">购物车</el-link>
     <el-link>收藏</el-link>
     <el-link>订单</el-link>
     <el-link href="login">退出</el-link>

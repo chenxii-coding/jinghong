@@ -21,4 +21,15 @@
         variation,type,created_by,
         created_time,updated_by,updated_time
     </sql>
+
+    <insert id="insert" parameterType="com.chenxii.jinghong.common.entity.InventoryLog">
+        insert into inventory_log(goods_no, old_count, variation, type)
+        values
+        <foreach collection="inventoryList" item="item" separator=",">
+            (#{item.goodsNo},
+            #{item.oldCount},
+            #{item.variation},
+            #{item.type})
+        </foreach>
+    </insert>
 </mapper>

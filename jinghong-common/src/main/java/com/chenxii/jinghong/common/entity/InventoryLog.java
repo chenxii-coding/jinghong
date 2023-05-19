@@ -18,9 +18,9 @@ public class InventoryLog extends BaseEntity implements Serializable {
 
     private String goodsNo;
 
-    private Object oldCount;
+    private int oldCount;
 
-    private Object variation;
+    private int variation;
 
     private String type;
 

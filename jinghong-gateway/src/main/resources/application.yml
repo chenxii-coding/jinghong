@@ -1,15 +1,30 @@
 server:
   port: 8003
+  max-http-header-size: 2MB
 spring:
   cloud:
-    config:
-      uri: http://localhost:8002
     gateway:
       routes:
         - id: jinghong-goods
-          uri: http://localhost:8003
+          uri: lb://jinghong-goods
           predicates:
             - Path=/jinghong/api/goods/**
+        - id: jinghong-order
+          uri: lb://jinghong-order
+          predicates:
+            - Path=/jinghong/api/order/**
+        - id: jinghong-user
+          uri: lb://jinghong-user
+          predicates:
+            - Path=/jinghong/api/user/**
+        - id: jinghong-inventory
+          uri: lb://jinghong-inventory
+          predicates:
+            - Path=/jinghong/api/inventory/**
+        - id: jinghong-delivery
+          uri: lb://jinghong-delivery
+          predicates:
+            - Path=/jinghong/api/delivery/**
   config:
     import: optional:configserver:http://localhost:8002
   application:

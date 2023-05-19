@@ -24,7 +24,7 @@ public class OrderDetail extends BaseEntity implements Serializable {
 
     private BigDecimal price;
 
-    private Object count;
+    private int count;
 
     private static final long serialVersionUID = 1L;
 

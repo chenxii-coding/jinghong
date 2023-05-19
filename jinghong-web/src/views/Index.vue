@@ -6,6 +6,7 @@
     <div class="index">
       <goods-item
           v-for="item in type.goodsList"
+          :goods-no="item.goodsNo"
           :goods-name="item.goodsName"
           :image="item.image"
           :category-name="item.categoryName"

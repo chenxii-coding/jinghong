@@ -70,4 +70,32 @@
         where is_on_sale = true
         order by random()
     </select>
+
+    <select id="queryByGoodsNoList" resultMap="BaseResultMap">
+        select
+            a.id,
+            a.goods_no,
+            a.goods_name,
+            a.category_no,
+            a.brand,
+            a.price,
+            a.image,
+            a.tags,
+            a.is_on_sale,
+            a.created_by,
+            a.created_time,
+            a.updated_by,
+            a.updated_time,
+            b.category_name
+        from goods a
+            left join category b
+                on a.category_no = b.category_no
+        where 1 = 0
+        <if test="goodsNoList != null and goodsNoList.size() > 0">
+            or a.goods_no in
+            <foreach collection="goodsNoList" item="item" separator="," open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
 </mapper>

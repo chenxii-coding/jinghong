@@ -1,7 +1,4 @@
 spring:
-  cloud:
-    config:
-      uri: http://localhost:8002
   config:
     import: optional:configserver:http://localhost:8002
   application:

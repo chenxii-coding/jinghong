@@ -1,6 +1,10 @@
 package com.chenxii.jinghong.common.dao;
 
+import com.chenxii.jinghong.common.entity.InventoryLog;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author chenxii
@@ -11,8 +15,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface InventoryLogDao {
 
+    int insert(@Param("inventoryLogList") List<InventoryLog> inventoryLogList);
+
 }
-
-
-
-

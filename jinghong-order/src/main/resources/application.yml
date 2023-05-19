@@ -1,0 +1,17 @@
+server:
+  port: 9003
+spring:
+  profiles:
+    active: common
+  application:
+    name: jinghong-order
+  config:
+    import: optional:configserver:http://localhost:8002
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8001/eureka

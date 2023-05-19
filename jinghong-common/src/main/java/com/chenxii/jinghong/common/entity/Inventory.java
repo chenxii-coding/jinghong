@@ -18,7 +18,7 @@ public class Inventory extends BaseEntity implements Serializable {
 
     private String goodsNo;
 
-    private Object count;
+    private int count;
 
     private static final long serialVersionUID = 1L;
 

@@ -7,7 +7,7 @@
     <resultMap id="BaseResultMap" type="com.chenxii.jinghong.common.entity.Inventory">
         <result property="id" column="id" jdbcType="VARCHAR"/>
         <result property="goodsNo" column="goods_no" jdbcType="VARCHAR"/>
-        <result property="count" column="count" jdbcType="OTHER"/>
+        <result property="count" column="count" jdbcType="INTEGER"/>
         <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
         <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
         <result property="updatedBy" column="updated_by" jdbcType="VARCHAR"/>
@@ -19,4 +19,42 @@
         created_by,created_time,updated_by,
         updated_time
     </sql>
+
+    <update id="updateWhenCreate" parameterType="com.chenxii.jinghong.common.entity.OrderDetail">
+        update inventory
+        set count =
+        case goods_no
+        <foreach collection="orderDetailList" item="item">
+            when #{item.goodsNo} then count - #{item.count}
+        </foreach>
+        else count
+        where goods_no in
+        <foreach collection="orderDetailList" item="item" open="(" close=")" separator=",">
+            #{item.goodsNo}
+        </foreach>
+    </update>
+
+    <update id="updateWhenCancel" parameterType="com.chenxii.jinghong.common.entity.OrderDetail">
+        update inventory
+        set count =
+        case goods_no
+        <foreach collection="orderDetailList" item="item">
+            when #{item.goodsNo} then count + #{item.count}
+        </foreach>
+        else count
+        where goods_no in
+        <foreach collection="orderDetailList" item="item" open="(" close=")" separator=",">
+            #{item.goodsNo}
+        </foreach>
+    </update>
+
+    <select id="queryByGoodsNoList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from inventory
+        where goods_no in
+        <foreach collection="goodsNoList" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </select>
 </mapper>

@@ -27,7 +27,7 @@
 <script>
 export default {
   name: "GoodsItem",
-  props: ['goodsName', 'image', 'categoryName', 'brand', 'price', 'tagsList'],
+  props: ['goodsNo', 'goodsName', 'image', 'categoryName', 'brand', 'price', 'tagsList'],
   data() {
     return {
       imagePrefix: '/images/',
@@ -42,7 +42,9 @@ export default {
       this.$message.success('分享成功')
     },
     addCarts() {
-      this.$message.success('已添加到购物车')
+      this.$request.post('/api/cart/U0001/' + this.goodsNo).then((res) => {
+        this.$message.success('已添加到购物车')
+      })
     },
     formatNum(num) {
       var value = Math.round(parseFloat(num) * 100) / 100

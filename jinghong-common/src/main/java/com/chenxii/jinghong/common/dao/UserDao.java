@@ -14,6 +14,8 @@ public interface UserDao {
 
     User queryByUid(String uid);
 
+    int updateLastLoginTime(String uid);
+
 }
 
 

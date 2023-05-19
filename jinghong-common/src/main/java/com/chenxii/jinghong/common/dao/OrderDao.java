@@ -1,5 +1,6 @@
 package com.chenxii.jinghong.common.dao;
 
+import com.chenxii.jinghong.common.entity.Order;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -11,8 +12,10 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface OrderDao {
 
+    int insert(Order order);
+
+    Order queryByOrderNo(String orderNo);
+
+    int updateOrderStatus(String orderNo, String orderStatus);
+
 }
-
-
-
-

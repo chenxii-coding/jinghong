@@ -37,7 +37,7 @@ public class Goods extends BaseEntity implements Serializable {
 
     private List<String> tagsList;
 
-    private boolean isOnSale;
+    private Boolean isOnSale;
 
     private List<GoodsDetail> goodsDetailList;
 

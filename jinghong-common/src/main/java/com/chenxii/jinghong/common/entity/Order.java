@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @TableName order
@@ -17,6 +18,8 @@ public class Order extends BaseEntity implements Serializable {
 
     private String id;
 
+    private String uid;
+
     private String orderNo;
 
     private BigDecimal amount;
@@ -24,6 +27,8 @@ public class Order extends BaseEntity implements Serializable {
     private String paidBy;
 
     private String status;
+
+    private List<OrderDetail> orderDetailList;
 
     private static final long serialVersionUID = 1L;
 }

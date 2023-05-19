@@ -6,6 +6,7 @@
 
     <resultMap id="BaseResultMap" type="com.chenxii.jinghong.common.entity.Order">
         <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="uid" column="uid" jdbcType="VARCHAR"/>
         <result property="orderNo" column="order_no" jdbcType="VARCHAR"/>
         <result property="amount" column="amount" jdbcType="NUMERIC"/>
         <result property="paidBy" column="paid_by" jdbcType="VARCHAR"/>
@@ -17,8 +18,30 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,order_no,amount,
+        id,uid,order_no,amount,
         paid_by,status,created_by,
         created_time,updated_by,updated_time
     </sql>
+
+    <insert id="insert" parameterType="com.chenxii.jinghong.common.entity.Order">
+        insert into "order"(uid, order_no, amount, paid_by, status)
+        values (#{uid},
+                #{orderNo},
+                #{amount},
+                #{paid_by},
+                #{status})
+    </insert>
+
+    <update id="updateOrderStatus" parameterType="java.lang.String">
+        update "order"
+        set status = #{orderStatus}
+        where order_no = #{orderNo}
+    </update>
+
+    <select id="queryByOrderNo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from "order"
+        where order_no = #{orderNo}
+    </select>
 </mapper>

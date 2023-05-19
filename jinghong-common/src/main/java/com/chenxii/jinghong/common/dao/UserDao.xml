@@ -25,6 +25,13 @@
         updated_by,updated_time
     </sql>
 
+    <update id="updateLastLoginTime" parameterType="java.lang.String">
+        update "user"
+        set last_login_time = now(),
+            updated_time    = now()
+        where uid = #{uid}
+    </update>
+
     <select id="queryByUid" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

@@ -350,3 +350,24 @@ values ('GOODS_0001', '钢笔1', 'CATEGORY_0009', '钢笔品牌1', 'gangbi1', '�
        ('GOODS_0080', '羽毛球2', 'CATEGORY_0035', '羽毛球品牌3', 'yumaoqiu2', '体育器材#羽毛球', 5.10),
        ('GOODS_0081', '羽毛球3', 'CATEGORY_0035', '羽毛球品牌3', 'yumaoqiu3', '体育器材#羽毛球', 5.90);
 
+
+-- 购物车
+drop table if exists cart;
+create table if not exists cart
+(
+    id           varchar(36) not null default uuid_generate_v4(),
+    uid          varchar(20) not null,
+    goods_no     varchar(50) not null,
+    count        int         not null default 1,
+    created_by   varchar(50) not null default 'postgres',
+    created_time timestamp   not null default current_timestamp,
+    updated_by   varchar(50) not null default 'postgres',
+    updated_time timestamp   not null default current_timestamp
+);
+
+create unique index uidx_cart on cart (uid, goods_no);
+
+
+select *
+from cart
+order by created_time;

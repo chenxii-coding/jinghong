@@ -2,6 +2,7 @@ package com.chenxii.jinghong.common.dao;
 
 import com.chenxii.jinghong.common.entity.Goods;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,5 +20,7 @@ public interface GoodsDao {
     List<Goods> queryAll();
 
     List<Goods> queryOnSaleGoods();
+
+    List<Goods> queryByGoodsNoList(@Param("goodsNoList") List<String> goodsNoList);
 
 }

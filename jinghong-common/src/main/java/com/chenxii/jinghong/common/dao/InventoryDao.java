@@ -1,6 +1,11 @@
 package com.chenxii.jinghong.common.dao;
 
+import com.chenxii.jinghong.common.entity.Inventory;
+import com.chenxii.jinghong.common.entity.OrderDetail;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author chenxii
@@ -11,8 +16,10 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface InventoryDao {
 
+    List<Inventory> queryByGoodsNoList(@Param("goodsNoList") List<String> goodsNoList);
+
+    int updateWhenCreate(@Param("orderDetailList") List<OrderDetail> orderDetailList);
+
+    int updateWhenCancel(@Param("orderDetailList") List<OrderDetail> orderDetailList);
+
 }
-
-
-
-

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenxii.jinghong.common.dao.CartDao">
+
+    <resultMap id="BaseResultMap" type="com.chenxii.jinghong.common.entity.Cart">
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="uid" column="uid" jdbcType="VARCHAR"/>
+        <result property="goodsNo" column="goods_no" jdbcType="VARCHAR"/>
+        <result property="count" column="count" jdbcType="INTEGER"/>
+        <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
+        <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
+        <result property="updatedBy" column="updated_by" jdbcType="VARCHAR"/>
+        <result property="updatedTime" column="updated_time" jdbcType="TIMESTAMP"/>
+
+        <result property="goodsName" column="goods_name" jdbcType="VARCHAR"/>
+        <result property="image" column="image" jdbcType="VARCHAR"/>
+        <result property="brand" column="brand" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="NUMERIC"/>
+        <result property="categoryNo" column="category_no" jdbcType="VARCHAR"/>
+        <result property="categoryName" column="category_name" jdbcType="VARCHAR"/>
+        <result property="isOnSale" column="is_on_sale" jdbcType="BOOLEAN"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,uid,goods_no,count,created_by,created_time,
+        updated_by,updated_time
+    </sql>
+
+    <insert id="insert" parameterType="com.chenxii.jinghong.common.entity.Cart">
+        insert into cart(uid, goods_no, count)
+        values (#{uid},
+                #{goodsNo},
+                #{count})
+        on conflict (uid, goods_no) do update
+            set count = #{count,jdbcType=INTEGER}
+    </insert>
+
+    <insert id="updateCountByUidAndGoodsNo">
+        insert into cart(uid, goods_no, count)
+        values (#{uid},
+                #{goodsNo},
+                #{count})
+        on conflict (uid, goods_no) do update
+            set count = #{count,jdbcType=INTEGER}
+    </insert>
+
+    <delete id="deleteByUidAndGoodsNo" parameterType="java.lang.String">
+        delete
+        from cart
+        where uid = #{uid}
+          and goods_no = #{goodsNo}
+    </delete>
+
+    <select id="queryByUid" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select a.uid,
+               a.goods_no,
+               b.goods_name,
+               b.image,
+               b.brand,
+               b.price,
+               b.category_no,
+               c.category_name,
+               b.is_on_sale,
+               a.count,
+               a.created_time,
+               a.created_by
+        from (select uid,
+                     goods_no,
+                     count,
+                     created_time,
+                     created_by
+              from cart
+              where uid = #{uid}) a
+                 left join goods b
+                           on a.goods_no = b.goods_no
+                 left join category c
+                           on b.category_no = c.category_no
+        order by a.created_time desc
+    </select>
+</mapper>

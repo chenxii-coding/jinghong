@@ -1,12 +1,8 @@
 package com.chenxii.jinghong.goods.service.impl;
 
-import com.chenxii.jinghong.common.dao.AutoNoDao;
-import com.chenxii.jinghong.common.dao.GoodsDao;
-import com.chenxii.jinghong.common.dao.GoodsDetailDao;
-import com.chenxii.jinghong.common.entity.AutoNo;
-import com.chenxii.jinghong.common.entity.Goods;
-import com.chenxii.jinghong.common.entity.GoodsDetail;
-import com.chenxii.jinghong.common.entity.Response;
+import com.chenxii.jinghong.common.constant.GoodsRate;
+import com.chenxii.jinghong.common.dao.*;
+import com.chenxii.jinghong.common.entity.*;
 import com.chenxii.jinghong.common.utils.ResponseUtil;
 import com.chenxii.jinghong.goods.service.GoodsService;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +25,12 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Autowired
     private AutoNoDao autoNoDao;
+
+    @Autowired
+    private RateDao rateDao;
+
+    @Autowired
+    private FavoriteDao favoriteDao;
 
     public Response<Void> addGoods(Goods goods) {
         AutoNo autoNo = new AutoNo("goods");
@@ -107,5 +109,63 @@ public class GoodsServiceImpl implements GoodsService {
         typeAll.put("goodsList", goodsList);
         resultList.add(typeAll);
         return ResponseUtil.success(resultList);
+    }
+
+    @Override
+    public Response<Goods> queryGoodsDetail(String goodsNo) {
+        Goods goods = goodsDao.queryByGoodsNo(goodsNo);
+        List<GoodsDetail> goodsDetailList = goodsDetailDao.queryByGoodsNo(goodsNo);
+
+        String tags = goods.getTags();
+        if (StringUtils.isNotBlank(tags)) {
+            goods.setTagsList(Arrays.asList(tags.split("#")));
+        }
+        goods.setGoodsDetailList(goodsDetailList);
+
+        return ResponseUtil.success(goods);
+    }
+
+    @Override
+    public Response<Void> share(String uid, String goodsNo) {
+        int goodsRate = GoodsRate.GOODS_RATE_SHARE;
+        // 分享商品什么都不做，只更新评分
+        log.info("【评分】用户 {} 分享商品 {} , 更新分数: {}", uid, goodsNo, goodsRate);
+        this.updateRate(uid, goodsNo, goodsRate);
+        return ResponseUtil.success();
+    }
+
+    @Override
+    public Response<Void> favorite(String uid, String goodsNo) {
+        log.info("【喜欢】用户 {} 喜欢了商品 {}", uid, goodsNo);
+        Favorite favorite = new Favorite();
+        favorite.setUid(uid);
+        favorite.setGoodsNo(goodsNo);
+        favoriteDao.insert(favorite);
+
+        // 更新评分
+        this.updateRate(uid, goodsNo, GoodsRate.GOODS_RATE_FAVORITE);
+
+        return ResponseUtil.success();
+    }
+
+    @Override
+    public Response<Void> removeFavorite(String uid, String goodsNo) {
+        log.info("【移除收藏】用户 {} 将商品 {} 移除收藏", uid, goodsNo);
+        favoriteDao.delete(uid, goodsNo);
+
+        // 更新评分
+        this.updateRate(uid, goodsNo, GoodsRate.GOODS_RATE_REMOVE_FAVORITE);
+        return ResponseUtil.success();
+    }
+
+    @Override
+    public void updateRate(String uid, String goodsNo, int rate) {
+        log.info("【更新评分】更新用户 {} 对商品 {} 的评分为 {}", uid, goodsNo, rate);
+        Rate goodsRate = new Rate();
+        goodsRate.setUid(uid);
+        goodsRate.setGoodsNo(goodsNo);
+        goodsRate.setRate(rate);
+        rateDao.insert(goodsRate);
+        ResponseUtil.success();
     }
 }

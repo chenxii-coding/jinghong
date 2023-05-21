@@ -12,12 +12,12 @@
       <p>¥ {{ formatNum(price) }}</p>
       <div style="text-align: left">
         <el-button-group>
-          <el-button type="parmary" size="small" @click="share">详情</el-button>
-          <el-button type="parmary" size="small" @click="share">分享</el-button>
-          <el-button type="parmary" size="small" @click="favorite">收藏</el-button>
+          <el-button type="primary" size="small" @click="toDetail">详情</el-button>
+          <el-button type="primary" size="small" @click="share">分享</el-button>
+          <el-button type="primary" size="small" @click="favorite">收藏</el-button>
         </el-button-group>
         <el-button-group style="margin-top: 5px">
-          <el-button type="parmary" size="small" @click="addCarts">加入购物车</el-button>
+          <el-button type="primary" size="small" @click="addCarts">加入购物车</el-button>
         </el-button-group>
       </div>
     </div>
@@ -35,6 +35,14 @@ export default {
     }
   },
   methods: {
+    toDetail() {
+      this.$router.push({
+        path: 'goodsDetail',
+        query: {
+          goodsNo: this.goodsNo
+        }
+      })
+    },
     favorite() {
       this.$message.success('收藏成功')
     },

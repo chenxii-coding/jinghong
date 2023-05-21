@@ -23,4 +23,6 @@ public interface GoodsDao {
 
     List<Goods> queryByGoodsNoList(@Param("goodsNoList") List<String> goodsNoList);
 
+    Goods queryByGoodsNo(String goodsNo);
+
 }

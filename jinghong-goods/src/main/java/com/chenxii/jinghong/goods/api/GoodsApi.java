@@ -30,4 +30,10 @@ public class GoodsApi {
     public Response<Void> addGoods(@RequestBody Goods goods) {
         return goodsService.addGoods(goods);
     }
+
+    @GetMapping("/goods/{goodsNo}")
+    public Response<Goods> queryGoodsDetail(@PathVariable String goodsNo) {
+        return goodsService.queryGoodsDetail(goodsNo);
+    }
+
 }

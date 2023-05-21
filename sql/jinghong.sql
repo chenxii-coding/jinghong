@@ -1,10 +1,8 @@
-drop schema if exists public;
-
 create schema if not exists public;
 
 set time zone "Asia/Shanghai";
 
-create extension "uuid-ossp";
+create extension if not exists "uuid-ossp";
 
 -- 用户表
 drop table if exists public.user;
@@ -365,9 +363,26 @@ create table if not exists cart
     updated_time timestamp   not null default current_timestamp
 );
 
-create unique index uidx_cart on cart (uid, goods_no);
+create unique index if not exists uidx_cart on cart (uid, goods_no);
+
+
+-- 评分表
+drop table if exists rate;
+create table if not exists rate
+(
+    id           varchar(36) not null default uuid_generate_v4(),
+    uid          varchar(20) not null,
+    goods_no     varchar(50) not null,
+    rate         int         not null default 0,
+    created_by   varchar(50) not null default 'postgres',
+    created_time timestamp   not null default current_timestamp,
+    updated_by   varchar(50) not null default 'postgres',
+    updated_time timestamp   not null default current_timestamp
+);
+
+create unique index if not exists uidx_rate on rate (uid, goods_no);
+
 
 
 select *
-from cart
-order by created_time;
+from rate;

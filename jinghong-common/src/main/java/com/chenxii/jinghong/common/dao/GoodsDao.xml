@@ -98,4 +98,19 @@
             </foreach>
         </if>
     </select>
+
+    <select id="queryByGoodsNo" resultMap="BaseResultMap">
+        select a.goods_no,
+               a.goods_name,
+               a.category_no,
+               b.category_name,
+               a.brand,
+               a.price,
+               a.image,
+               a.tags
+        from goods a
+                 left join category b
+                           on a.category_no = b.category_no
+        where goods_no = #{goodsNo}
+    </select>
 </mapper>

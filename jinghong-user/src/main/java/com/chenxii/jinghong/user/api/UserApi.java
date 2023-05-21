@@ -18,10 +18,4 @@ public class UserApi {
         return userService.queryUser(uid);
     }
 
-    @GetMapping("/user/login")
-    public Response<User> login(@RequestParam String uid,
-                                @RequestParam String password) {
-        return userService.login(uid, password);
-    }
-
 }

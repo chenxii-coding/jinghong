@@ -13,9 +13,9 @@ import java.util.UUID;
 public class TokenUtil {
 
     // token过期时间 2 分钟
-    private static final int TOKEN_EXPIRE_TIME = 2 * 60 * 1000;
+    private static final int TOKEN_EXPIRE_TIME = 20 * 60 * 1000;
 
-    private static final String TOKEN_KEY = "1234567890";
+    private static final String TOKEN_KEY = "jinghong-token-secret";
 
     public static String createToken(String uid) {
         log.info("【token生成】uid: {}", uid);

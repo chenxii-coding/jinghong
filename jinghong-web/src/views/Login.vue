@@ -21,22 +21,22 @@
 </template>
 
 <script>
-import { user } from '@/store/user'
+import { useUser } from '@/store/user'
 
 export default {
-  name: "Login",
+  name: 'Login',
   data() {
     return {
       form: {
-        uid: '',
-        password: '',
+        uid: 'U0001',
+        password: '12345',
         rememberMe: false
       },
       user: {}
     }
   },
   created() {
-    this.user = user()
+    this.user = useUser()
   },
   methods: {
     toRegisterView() {
@@ -46,8 +46,23 @@ export default {
       })
     },
     login() {
-      console.log('form: ', this.form)
-      this.user.set(this.form)
+      let param = {
+        uid: this.form.uid,
+        password: this.form.password
+      }
+      this.$request.get('/api/gateway/userLogin', { params: param }).then((res) => {
+        let userInfo = res.data
+        localStorage.setItem('uid', userInfo.uid)
+        localStorage.setItem('username', userInfo.username)
+        localStorage.setItem('token', userInfo.token)
+        this.user.setUserInfo(userInfo)
+        console.info('userInfo: ', this.user.userInfo)
+        this.$message.success('登陆成功')
+        this.$router.push({
+          path: '/',
+          query: {}
+        })
+      })
     }
   }
 }

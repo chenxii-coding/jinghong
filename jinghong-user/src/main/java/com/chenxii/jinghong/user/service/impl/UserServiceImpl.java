@@ -23,21 +23,4 @@ public class UserServiceImpl implements UserService {
         return ResponseUtil.success(user);
     }
 
-    @Override
-    public Response<User> login(String uid, String password) {
-        log.info("【账户】用户 {} 使用密码 {} 登陆", uid, password);
-        User user = userDao.queryByUid(uid);
-        if (user == null) {
-            return ResponseUtil.failed("用户不存在");
-        }
-
-        if (!StringUtils.equals(password, user.getPassword())) {
-            return ResponseUtil.failed("密码错误");
-        }
-
-        // 更新上次登陆时间
-        userDao.updateLastLoginTime(uid);
-
-        return ResponseUtil.success(user);
-    }
 }

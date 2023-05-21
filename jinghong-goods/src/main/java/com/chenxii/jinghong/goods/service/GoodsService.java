@@ -18,4 +18,14 @@ public interface GoodsService {
 
     Response<List<Map<String, Object>>> queryOnSaleGoods();
 
+    Response<Goods> queryGoodsDetail(String goodsNo);
+
+    Response<Void> share(String uid, String goodsNo);
+
+    Response<Void> favorite(String uid, String goodsNo);
+
+    Response<Void> removeFavorite(String uid, String goodsNo);
+
+    void updateRate(String uid, String goodsNo, int rate);
+
 }

@@ -1,19 +1,29 @@
 import { defineStore } from 'pinia'
 
-export const user = defineStore({
+export const useUser = defineStore({
   id: 'user',
-  state: () => ({
-    uid: '',
-    username: '',
-    sex: '',
-    birthday: '',
-    lastLoginTime: '',
-    status: ''
-  }),
+  state() {
+    return {
+      userInfo: {
+        uid: '',
+        username: '',
+        sex: '',
+        birthday: '',
+        lastLoginTime: '',
+        status: '',
+        token: ''
+      }
+    }
+  },
   actions: {
-    set(userInfo) {
-      this.user = userInfo
-      console.info('this.user: ', this.user)
+    setUserInfo(userInfo) {
+      this.userInfo = userInfo
+    },
+    reset() {
+      localStorage.setItem('userInfo', null)
+      Object.assign(this.user, {})
     }
   }
 })
+
+export default useUser

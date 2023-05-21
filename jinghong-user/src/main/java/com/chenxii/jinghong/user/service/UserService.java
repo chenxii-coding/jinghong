@@ -7,6 +7,4 @@ public interface UserService {
 
     Response<User> queryUser(String uid);
 
-    Response<User> login(String uid, String password);
-
 }

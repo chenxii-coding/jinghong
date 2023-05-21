@@ -4,20 +4,29 @@
     <el-link href="/cart">购物车</el-link>
     <el-link>收藏</el-link>
     <el-link>订单</el-link>
-    <el-link href="login">退出</el-link>
+    <el-link @click="toLogin" v-if="user.userInfo.token">退出</el-link>
+    <el-link href="login" v-else>登陆</el-link>
   </div>
 </template>
 
 <script>
+import { useUser } from '@/store/user'
+
 export default {
   name: "Header",
-  data () {
+  data() {
     return {
-
+      user: {}
     }
+  },
+  created() {
+    this.user = useUser()
+    console.info('userInfo: ', this.user.userInfo)
   },
   methods: {
     toLogin() {
+      this.user.reset()
+      console.info('userInfo: ', this.user.userInfo)
       this.$router.push({
         path: '/login',
         query: {}

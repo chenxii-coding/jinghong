@@ -5,6 +5,10 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: jinghong-gateway
+          uri: lb://jinghong-gateway
+          predicates:
+            - Path=/jinghong/api/gateway/**
         - id: jinghong-goods
           uri: lb://jinghong-goods
           predicates:
@@ -27,6 +31,8 @@ spring:
             - Path=/jinghong/api/delivery/**
   config:
     import: optional:configserver:http://localhost:8002
+  profiles:
+    active: common
   application:
     name: jinghong-gateway
 eureka:

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 3001",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
@@ -13,6 +13,7 @@
     "axios": "^1.4.0",
     "element-plus": "^2.3.3",
     "pinia": "^2.0.36",
+    "qs": "^6.11.2",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },

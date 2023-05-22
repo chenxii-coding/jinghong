@@ -187,7 +187,7 @@ create table if not exists public.order
     uid          varchar(20)    not null,
     order_no     varchar(50)    not null,
     amount       numeric(10, 2) not null default 0.00,
-    paid_by      varchar(10)    not null,
+    paid_by      varchar(10),
     status       varchar(10)    not null,
     created_by   varchar(50)    not null default 'postgres',
     created_time timestamp      not null default current_timestamp,
@@ -243,6 +243,8 @@ create table if not exists public.favorite
     updated_by   varchar(50) not null default 'postgres',
     updated_time timestamp   not null default current_timestamp
 );
+
+create unique index uidx_favorite on favorite (uid, goods_no);
 
 
 -- 编号生成

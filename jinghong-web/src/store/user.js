@@ -18,10 +18,16 @@ export const useUser = defineStore({
   actions: {
     setUserInfo(userInfo) {
       this.userInfo = userInfo
+      localStorage.setItem('uid', userInfo.uid)
+      localStorage.setItem('username', userInfo.username)
+      localStorage.setItem('token', userInfo.token)
     },
     reset() {
-      localStorage.setItem('userInfo', null)
-      Object.assign(this.user, {})
+      this.userInfo = {}
+      localStorage.removeItem('userInfo')
+      localStorage.removeItem('uid')
+      localStorage.removeItem('username')
+      localStorage.removeItem('token')
     }
   }
 })

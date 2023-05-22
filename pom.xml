@@ -30,7 +30,6 @@
         <module>jinghong-server</module>
         <module>jinghong-gateway</module>
         <module>jinghong-hadoop</module>
-        <module>jinghong-hadoop</module>
     </modules>
 
     <dependencyManagement>

@@ -24,6 +24,8 @@ public interface GoodsService {
 
     Response<Void> favorite(String uid, String goodsNo);
 
+    Response<List<Goods>> queryFavorite(String uid);
+
     Response<Void> removeFavorite(String uid, String goodsNo);
 
     void updateRate(String uid, String goodsNo, int rate);

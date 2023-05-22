@@ -28,7 +28,7 @@
         values (#{uid},
                 #{orderNo},
                 #{amount},
-                #{paid_by},
+                #{paidBy},
                 #{status})
     </insert>
 

@@ -35,4 +35,24 @@
         where uid = #{uid}
           and goods_no = #{goodsNo}
     </delete>
+
+    <select id="queryByUid" resultType="com.chenxii.jinghong.common.entity.Goods">
+        select a.uid,
+               b.goods_no      as goodsNo,
+               b.goods_name    as goodsName,
+               b.category_no   as categoryNo,
+               c.category_name as categoryName,
+               b.brand,
+               b.price,
+               b.image,
+               b.tags,
+               b.created_time  as createdTime
+        from favorite a
+                 join goods b
+                      on a.goods_no = b.goods_no
+                 left join category c
+                           on b.category_no = c.category_no
+        where a.uid = #{uid}
+        order by a.created_time desc
+    </select>
 </mapper>

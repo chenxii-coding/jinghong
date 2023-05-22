@@ -22,4 +22,6 @@ public interface InventoryDao {
 
     int updateWhenCancel(@Param("orderDetailList") List<OrderDetail> orderDetailList);
 
+    int insert(Inventory inventory);
+
 }

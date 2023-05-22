@@ -2,6 +2,7 @@ package com.chenxii.jinghong.common.dao;
 
 import com.chenxii.jinghong.common.entity.Order;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author chenxii
@@ -16,6 +17,7 @@ public interface OrderDao {
 
     Order queryByOrderNo(String orderNo);
 
-    int updateOrderStatus(String orderNo, String orderStatus);
+    int updateOrderStatus(@Param("orderNo") String orderNo,
+                          @Param("orderStatus") String orderStatus);
 
 }

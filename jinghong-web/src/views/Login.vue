@@ -52,9 +52,6 @@ export default {
       }
       this.$request.get('/api/gateway/userLogin', { params: param }).then((res) => {
         let userInfo = res.data
-        localStorage.setItem('uid', userInfo.uid)
-        localStorage.setItem('username', userInfo.username)
-        localStorage.setItem('token', userInfo.token)
         this.user.setUserInfo(userInfo)
         console.info('userInfo: ', this.user.userInfo)
         this.$message.success('登陆成功')

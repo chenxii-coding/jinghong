@@ -45,20 +45,22 @@ export default {
       cartList: [],
       imagePrefix: '/images/',
       imageSuffix: '.jpg',
-      selectedGoodsList: []
+      selectedGoodsList: [],
+      uid: ''
     }
   },
   created() {
+    this.uid = localStorage.getItem('uid')
     this.queryCart()
   },
   methods: {
     queryCart() {
-      this.$request.get('/api/cart/U0001').then((res) => {
+      this.$request.get('/api/goods/cart/' + this.uid).then((res) => {
         this.cartList = res.data
       })
     },
     removeGoods(goodsNo) {
-      this.$request.delete('/api/cart/U0001/' + goodsNo).then((res) => {
+      this.$request.delete('/api/goods/cart/' + this.uid + '/' + goodsNo).then((res) => {
         this.$message.success('移除成功')
         this.queryCart()
       })
@@ -72,8 +74,24 @@ export default {
         return false
       }
 
-      this.$confirm('', '确定生成订单？', {
+      let orderDetailList = []
+      let list = this.selectedGoodsList
+      for (let i = 0; i < list.length; i++) {
+        let item = list[i]
+        let goodsItem = {
+          goodsNo: item.goodsNo,
+          count: item.count,
+          price: item.price
+        }
+        orderDetailList.push(goodsItem)
+      }
 
+      let param = {
+        uid: this.uid,
+        orderDetailList: orderDetailList
+      }
+      this.$request.post('/api/order/create', param).then((res) => {
+        this.$message.success('订单创建成功')
       })
     }
   }

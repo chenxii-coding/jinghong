@@ -15,25 +15,25 @@ public class CartApi {
     @Autowired
     private CartService cartService;
 
-    @GetMapping("/cart/{uid}")
+    @GetMapping("/goods/cart/{uid}")
     public Response<List<Cart>> queryCart(@PathVariable String uid) {
         return cartService.queryCart(uid);
     }
 
-    @PostMapping("/cart/{uid}/{goodsNo}")
+    @PostMapping("/goods/cart/{uid}/{goodsNo}")
     public Response<Void> addGoods(@PathVariable String uid,
                                    @PathVariable String goodsNo) {
         return cartService.addGoods(uid, goodsNo);
     }
 
-    @PutMapping("/cart/{uid}/{goodsNo}/{count}")
+    @PutMapping("/goods/cart/{uid}/{goodsNo}/{count}")
     public Response<Void> updateGoods(@PathVariable String uid,
                                       @PathVariable String goodsNo,
                                       @PathVariable int count) {
         return cartService.updateGoods(uid, goodsNo, count);
     }
 
-    @DeleteMapping("/cart/{uid}/{goodsNo}")
+    @DeleteMapping("/goods/cart/{uid}/{goodsNo}")
     public Response<Void> removeGoods(@PathVariable String uid,
                                       @PathVariable String goodsNo) {
         return cartService.removeGoods(uid, goodsNo);

@@ -1,0 +1,14 @@
+sqoop import \
+	--connect jdbc:postgresql://localhost:5432/jinghong \
+	--username postgres \
+	--password secret \
+	--query "select id, uid, goods_no, rate from rate where 1 = 1 and $CONDITIONS order by uid, goods_no" \
+	--columns id,uid,goods_no,rate \
+	--hive-table jinghong.rate \
+	-as-textfile \
+	--target-dir /tmp/hive/chenxii/sqoop/import/rate \
+	--delete-target-dir \
+	--fields-terminated-by "," \
+	--num-mappers 1 \
+	--hive-import \
+	--hive-overwrite

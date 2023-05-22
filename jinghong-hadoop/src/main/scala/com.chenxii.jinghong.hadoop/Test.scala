@@ -1,12 +1,9 @@
 package com.chenxii.jinghong.hadoop
 
-/**
- * Hello world!
- *
- */
-object App {
+object Test {
+
   def main(args: Array[String]): Unit = {
-    println("Hello World!")
+    print("hello world!")
   }
 
 }

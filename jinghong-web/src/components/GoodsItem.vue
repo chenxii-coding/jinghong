@@ -31,8 +31,12 @@ export default {
   data() {
     return {
       imagePrefix: '/images/',
-      imageSuffix: '.jpg'
+      imageSuffix: '.jpg',
+      uid: ''
     }
+  },
+  created() {
+    this.uid = localStorage.getItem('uid')
   },
   methods: {
     toDetail() {
@@ -44,13 +48,17 @@ export default {
       })
     },
     favorite() {
-      this.$message.success('收藏成功')
+      this.$request.post('/api/goods/favorite/' + this.uid + '/' + this.goodsNo).then((res) => {
+        this.$message.success('收藏成功')
+      })
     },
     share() {
-      this.$message.success('分享成功')
+      this.$request.post('/api/goods/share/' + this.uid + '/' + this.goodsNo).then((res) => {
+        this.$message.success('分享成功')
+      })
     },
     addCarts() {
-      this.$request.post('/api/cart/U0001/' + this.goodsNo).then((res) => {
+      this.$request.post('/api/goods/cart/' + this.uid + '/' + this.goodsNo).then((res) => {
         this.$message.success('已添加到购物车')
       })
     },

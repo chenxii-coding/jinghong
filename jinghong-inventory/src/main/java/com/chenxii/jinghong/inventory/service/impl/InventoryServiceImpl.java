@@ -1,14 +1,11 @@
 package com.chenxii.jinghong.inventory.service.impl;
 
 import com.chenxii.jinghong.common.constant.OrderStatus;
-import com.chenxii.jinghong.common.dao.InventoryDao;
-import com.chenxii.jinghong.common.dao.InventoryLogDao;
-import com.chenxii.jinghong.common.dao.OrderDao;
-import com.chenxii.jinghong.common.dao.OrderDetailDao;
+import com.chenxii.jinghong.common.dao.*;
 import com.chenxii.jinghong.common.entity.*;
+import com.chenxii.jinghong.common.utils.LogUtil;
 import com.chenxii.jinghong.common.utils.ResponseUtil;
 import com.chenxii.jinghong.inventory.service.InventoryService;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +16,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
-@Slf4j
 public class InventoryServiceImpl implements InventoryService {
 
     @Autowired
@@ -33,6 +29,9 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Autowired
     private OrderDetailDao orderDetailDao;
+
+    @Autowired
+    private CartDao cartDao;
 
     @Override
     public Response<Void> updateInventory(String orderNo, String type) {
@@ -48,14 +47,14 @@ public class InventoryServiceImpl implements InventoryService {
         // 查询订单
         Order order = orderDao.queryByOrderNo(orderNo);
         if (order == null) {
-            log.error("【库存】扣减库存失败, 订单不存在, 订单号: {}", orderNo);
+            LogUtil.error("【库存】扣减库存失败, 订单不存在, 订单号: {}", orderNo);
             return ResponseUtil.failed("下单失败，库存不足");
         }
 
         // 获取订单详情
         List<OrderDetail> orderDetailList = orderDetailDao.queryByOrderNo(orderNo);
         if (CollectionUtils.isEmpty(orderDetailList)) {
-            log.warn("【库存】订单详情为空, 订单号: {}", orderNo);
+            LogUtil.warn("【库存】订单详情为空, 订单号: {}", orderNo);
             orderDao.updateOrderStatus(orderNo, OrderStatus.ORDER_STATUS_FAILED);
             return ResponseUtil.success();
         }
@@ -68,7 +67,7 @@ public class InventoryServiceImpl implements InventoryService {
 
         for (OrderDetail orderDetail : orderDetailList) {
             if (goodsCountMap.get(orderDetail.getGoodsNo()) < orderDetail.getCount()) {
-                log.error("【库存】扣减库存失败, 订单不存在, 订单号: {}, 商品号: {}", orderNo, orderDetail.getGoodsNo());
+                LogUtil.error("【库存】扣减库存失败, 订单不存在, 订单号: {}, 商品号: {}", orderNo, orderDetail.getGoodsNo());
                 orderDao.updateOrderStatus(orderNo, OrderStatus.ORDER_STATUS_FAILED);
                 return ResponseUtil.failed("下单失败，库存不足");
             }
@@ -79,6 +78,11 @@ public class InventoryServiceImpl implements InventoryService {
 
         // 更新订单状态
         orderDao.updateOrderStatus(orderNo, OrderStatus.ORDER_STATUS_TO_PAID);
+
+        // 更新购物车
+        for (String goodsNo : goodsNoList) {
+            cartDao.deleteByUidAndGoodsNo(order.getUid(), goodsNo);
+        }
 
         // 写库存记录
         InventoryLog inventoryLog;
@@ -101,7 +105,7 @@ public class InventoryServiceImpl implements InventoryService {
         // 获取订单详情
         List<OrderDetail> orderDetailList = orderDetailDao.queryByOrderNo(orderNo);
         if (CollectionUtils.isEmpty(orderDetailList)) {
-            log.warn("【库存】订单详情为空, 订单号: {}", orderNo);
+            LogUtil.warn("【库存】订单详情为空, 订单号: {}", orderNo);
             orderDao.updateOrderStatus(orderNo, OrderStatus.ORDER_STATUS_CANCEL);
             return ResponseUtil.success();
         }

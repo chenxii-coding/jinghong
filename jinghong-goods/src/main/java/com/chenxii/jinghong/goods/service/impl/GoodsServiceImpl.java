@@ -3,9 +3,10 @@ package com.chenxii.jinghong.goods.service.impl;
 import com.chenxii.jinghong.common.constant.GoodsRate;
 import com.chenxii.jinghong.common.dao.*;
 import com.chenxii.jinghong.common.entity.*;
+import com.chenxii.jinghong.common.utils.LogUtil;
+import com.chenxii.jinghong.common.utils.RequestUtil;
 import com.chenxii.jinghong.common.utils.ResponseUtil;
 import com.chenxii.jinghong.goods.service.GoodsService;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-@Slf4j
 public class GoodsServiceImpl implements GoodsService {
 
     @Autowired
@@ -113,6 +113,9 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public Response<Goods> queryGoodsDetail(String goodsNo) {
+        String currentUid = RequestUtil.currentUid();
+        LogUtil.info("【评分】用户 {} 查看商品 {} 的详情", currentUid, goodsNo);
+        this.updateRate(currentUid, goodsNo, GoodsRate.GOODS_RATE_CLICK);
         Goods goods = goodsDao.queryByGoodsNo(goodsNo);
         List<GoodsDetail> goodsDetailList = goodsDetailDao.queryByGoodsNo(goodsNo);
 
@@ -129,14 +132,14 @@ public class GoodsServiceImpl implements GoodsService {
     public Response<Void> share(String uid, String goodsNo) {
         int goodsRate = GoodsRate.GOODS_RATE_SHARE;
         // 分享商品什么都不做，只更新评分
-        log.info("【评分】用户 {} 分享商品 {} , 更新分数: {}", uid, goodsNo, goodsRate);
+        LogUtil.info("【评分】用户 {} 分享商品 {} , 更新分数: {}", uid, goodsNo, goodsRate);
         this.updateRate(uid, goodsNo, goodsRate);
         return ResponseUtil.success();
     }
 
     @Override
     public Response<Void> favorite(String uid, String goodsNo) {
-        log.info("【喜欢】用户 {} 喜欢了商品 {}", uid, goodsNo);
+        LogUtil.info("【喜欢】用户 {} 喜欢了商品 {}", uid, goodsNo);
         Favorite favorite = new Favorite();
         favorite.setUid(uid);
         favorite.setGoodsNo(goodsNo);
@@ -149,8 +152,22 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public Response<List<Goods>> queryFavorite(String uid) {
+        List<Goods> goodsList = favoriteDao.queryByUid(uid);
+        if (CollectionUtils.isNotEmpty(goodsList)) {
+            for (Goods goodsItem : goodsList) {
+                String tags = goodsItem.getTags();
+                if (StringUtils.isNotBlank(tags)) {
+                    goodsItem.setTagsList(Arrays.asList(tags.split("#")));
+                }
+            }
+        }
+        return ResponseUtil.success(goodsList);
+    }
+
+    @Override
     public Response<Void> removeFavorite(String uid, String goodsNo) {
-        log.info("【移除收藏】用户 {} 将商品 {} 移除收藏", uid, goodsNo);
+        LogUtil.info("【移除收藏】用户 {} 将商品 {} 移除收藏", uid, goodsNo);
         favoriteDao.delete(uid, goodsNo);
 
         // 更新评分
@@ -160,7 +177,7 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public void updateRate(String uid, String goodsNo, int rate) {
-        log.info("【更新评分】更新用户 {} 对商品 {} 的评分为 {}", uid, goodsNo, rate);
+        LogUtil.info("【更新评分】更新用户 {} 对商品 {} 的评分为 {}", uid, goodsNo, rate);
         Rate goodsRate = new Rate();
         goodsRate.setUid(uid);
         goodsRate.setGoodsNo(goodsNo);

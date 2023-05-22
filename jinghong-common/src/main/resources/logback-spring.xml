@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <appender name="file" class="ch.qos.logback.core.FileAppender">
+        <file>/var/log/jinghong-log/jinghong.log</file>
+        <filter class="com.chenxii.jinghong.common.filter.FileLogFilter"/>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%msg%n</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+    </appender>
+
+    <root level="ALL">
+        <appender-ref ref="file"/>
+    </root>
+</configuration>

@@ -1,0 +1,118 @@
+2023-05-21 23:02:49.726  INFO 3543 --- [main] c.chenxii.jinghong.user.UserApplication  : Starting UserApplication using Java 11.0.16.1 on chenxiis-MacBook-Pro.local with PID 3543 (/Users/chenxii/Documents/java/jinghong/jinghong-user/target/classes started by chenxii in /Users/chenxii/Documents/java/jinghong)
+2023-05-21 23:02:49.729  INFO 3543 --- [main] c.chenxii.jinghong.user.UserApplication  : The following 1 profile is active: "common"
+2023-05-21 23:02:49.767  INFO 3543 --- [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8002
+2023-05-21 23:02:49.767  INFO 3543 --- [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Connect Timeout Exception on Url - http://localhost:8002. Will be trying the next url if available
+2023-05-21 23:02:49.767  WARN 3543 --- [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Could not locate PropertySource ([ConfigServerConfigDataResource@66eb985d uris = array<String>['http://localhost:8002'], optional = true, profiles = list['common']]): I/O error on GET request for "http://localhost:8002/jinghong-user/common": Connection refused (Connection refused); nested exception is java.net.ConnectException: Connection refused (Connection refused)
+2023-05-21 23:02:50.472  INFO 3543 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=1a4091cd-74e0-3849-981d-09740f44221e
+2023-05-21 23:02:50.743  INFO 3543 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9002 (http)
+2023-05-21 23:02:50.749  INFO 3543 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-05-21 23:02:50.749  INFO 3543 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-05-21 23:02:50.846  INFO 3543 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-05-21 23:02:50.846  INFO 3543 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1077 ms
+2023-05-21 23:02:51.428  INFO 3543 --- [main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2023-05-21 23:02:51.515  WARN 3543 --- [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2023-05-21 23:02:51.667  INFO 3543 --- [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2023-05-21 23:02:51.697  INFO 3543 --- [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2023-05-21 23:02:51.701  INFO 3543 --- [main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-21 23:02:51.719  INFO 3543 --- [main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2023-05-21 23:02:51.719  INFO 3543 --- [main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2023-05-21 23:02:51.719  INFO 3543 --- [main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2023-05-21 23:02:51.719  INFO 3543 --- [main] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2023-05-21 23:02:51.719  INFO 3543 --- [main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2023-05-21 23:02:51.719  INFO 3543 --- [main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2023-05-21 23:02:51.719  INFO 3543 --- [main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2023-05-21 23:02:51.927  INFO 3543 --- [main] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2023-05-21 23:02:51.929  INFO 3543 --- [main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2023-05-21 23:02:51.931  INFO 3543 --- [main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2023-05-21 23:02:51.937  INFO 3543 --- [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1684681371936 with initial instances count: 0
+2023-05-21 23:02:51.939  INFO 3543 --- [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application JINGHONG-USER with eureka with status UP
+2023-05-21 23:02:51.939  INFO 3543 --- [main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1684681371939, current=UP, previous=STARTING]
+2023-05-21 23:02:51.941  INFO 3543 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_JINGHONG-USER/192.168.31.135:jinghong-user:9002: registering service...
+2023-05-21 23:02:51.959  INFO 3543 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9002 (http) with context path ''
+2023-05-21 23:02:51.960  INFO 3543 --- [main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 9002
+2023-05-21 23:02:51.977  INFO 3543 --- [main] c.chenxii.jinghong.user.UserApplication  : Started UserApplication in 2.888 seconds (JVM running for 3.494)
+2023-05-21 23:02:51.983  INFO 3543 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_JINGHONG-USER/192.168.31.135:jinghong-user:9002 - registration status: 204
+2023-05-21 23:02:56.336  INFO 3543 --- [http-nio-9002-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-05-21 23:02:56.336  INFO 3543 --- [http-nio-9002-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-05-21 23:02:56.338  INFO 3543 --- [http-nio-9002-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-05-21 23:02:56.395  INFO 3543 --- [http-nio-9002-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-05-21 23:02:56.561  INFO 3543 --- [http-nio-9002-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-05-21 23:02:56.585  INFO 3543 --- [http-nio-9002-exec-2] c.chenxii.jinghong.common.utils.LogUtil  : 【账户】查询用户 User(id=e6c10e85-e809-4301-a92a-ae95f957ba49, username=user001, password=12345, sex=保密, birthday=2000-01-01, lastLoginTime=Sun May 21 00:58:03 CST 2023, status=正常, token=null)
+2023-05-21 23:02:56.585  INFO 3543 --- [http-nio-9002-exec-2] c.chenxii.jinghong.common.utils.LogUtil  : 【商品评分】查询用户 User(id=e6c10e85-e809-4301-a92a-ae95f957ba49, username=user001, password=12345, sex=保密, birthday=2000-01-01, lastLoginTime=Sun May 21 00:58:03 CST 2023, status=正常, token=null)
+2023-05-21 23:03:21.934  INFO 3543 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2023-05-21 23:03:21.935  INFO 3543 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2023-05-21 23:03:21.935  INFO 3543 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2023-05-21 23:03:21.935  INFO 3543 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2023-05-21 23:03:21.935  INFO 3543 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2023-05-21 23:03:21.935  INFO 3543 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Application version is -1: false
+2023-05-21 23:03:21.935  INFO 3543 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2023-05-21 23:03:21.948  INFO 3543 --- [DiscoveryClient-CacheRefreshExecutor-0] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2023-05-21 23:05:03.631  INFO 3543 --- [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application JINGHONG-USER with eureka with status DOWN
+2023-05-21 23:05:03.631  INFO 3543 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1684681503631, current=DOWN, previous=UP]
+2023-05-21 23:05:03.631  INFO 3543 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_JINGHONG-USER/192.168.31.135:jinghong-user:9002: registering service...
+2023-05-21 23:05:03.638  INFO 3543 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_JINGHONG-USER/192.168.31.135:jinghong-user:9002 - registration status: 204
+2023-05-21 23:05:03.649  INFO 3543 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-05-21 23:05:03.655  INFO 3543 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-05-21 23:05:03.656  INFO 3543 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2023-05-21 23:05:06.661  INFO 3543 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2023-05-21 23:05:06.670  INFO 3543 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_JINGHONG-USER/192.168.31.135:jinghong-user:9002 - deregister  status: 200
+2023-05-21 23:05:06.677  INFO 3543 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+2023-05-21 23:05:12.002  INFO 3560 --- [main] c.chenxii.jinghong.user.UserApplication  : Starting UserApplication using Java 11.0.16.1 on chenxiis-MacBook-Pro.local with PID 3560 (/Users/chenxii/Documents/java/jinghong/jinghong-user/target/classes started by chenxii in /Users/chenxii/Documents/java/jinghong)
+2023-05-21 23:05:12.005  INFO 3560 --- [main] c.chenxii.jinghong.user.UserApplication  : The following 1 profile is active: "common"
+2023-05-21 23:05:12.049  INFO 3560 --- [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8002
+2023-05-21 23:05:12.049  INFO 3560 --- [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Connect Timeout Exception on Url - http://localhost:8002. Will be trying the next url if available
+2023-05-21 23:05:12.049  WARN 3560 --- [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Could not locate PropertySource ([ConfigServerConfigDataResource@66eb985d uris = array<String>['http://localhost:8002'], optional = true, profiles = list['common']]): I/O error on GET request for "http://localhost:8002/jinghong-user/common": Connection refused (Connection refused); nested exception is java.net.ConnectException: Connection refused (Connection refused)
+2023-05-21 23:05:12.811  INFO 3560 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=1a4091cd-74e0-3849-981d-09740f44221e
+2023-05-21 23:05:13.107  INFO 3560 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9002 (http)
+2023-05-21 23:05:13.115  INFO 3560 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-05-21 23:05:13.116  INFO 3560 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-05-21 23:05:13.218  INFO 3560 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-05-21 23:05:13.218  INFO 3560 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1167 ms
+2023-05-21 23:05:13.798  INFO 3560 --- [main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2023-05-21 23:05:13.877  WARN 3560 --- [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2023-05-21 23:05:14.036  INFO 3560 --- [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2023-05-21 23:05:14.065  INFO 3560 --- [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2023-05-21 23:05:14.069  INFO 3560 --- [main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-21 23:05:14.087  INFO 3560 --- [main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2023-05-21 23:05:14.087  INFO 3560 --- [main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2023-05-21 23:05:14.087  INFO 3560 --- [main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2023-05-21 23:05:14.087  INFO 3560 --- [main] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2023-05-21 23:05:14.087  INFO 3560 --- [main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2023-05-21 23:05:14.087  INFO 3560 --- [main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2023-05-21 23:05:14.087  INFO 3560 --- [main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2023-05-21 23:05:14.317  INFO 3560 --- [main] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2023-05-21 23:05:14.320  INFO 3560 --- [main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2023-05-21 23:05:14.323  INFO 3560 --- [main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2023-05-21 23:05:14.328  INFO 3560 --- [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1684681514328 with initial instances count: 1
+2023-05-21 23:05:14.330  INFO 3560 --- [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application JINGHONG-USER with eureka with status UP
+2023-05-21 23:05:14.331  INFO 3560 --- [main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1684681514331, current=UP, previous=STARTING]
+2023-05-21 23:05:14.333  INFO 3560 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_JINGHONG-USER/192.168.31.135:jinghong-user:9002: registering service...
+2023-05-21 23:05:14.351  INFO 3560 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9002 (http) with context path ''
+2023-05-21 23:05:14.352  INFO 3560 --- [main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 9002
+2023-05-21 23:05:14.368  INFO 3560 --- [main] c.chenxii.jinghong.user.UserApplication  : Started UserApplication in 3.067 seconds (JVM running for 3.641)
+2023-05-21 23:05:14.374  INFO 3560 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_JINGHONG-USER/192.168.31.135:jinghong-user:9002 - registration status: 204
+2023-05-21 23:06:14.953  INFO 3560 --- [http-nio-9002-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-05-21 23:06:14.953  INFO 3560 --- [http-nio-9002-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-05-21 23:06:14.954  INFO 3560 --- [http-nio-9002-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-05-21 23:06:15.001  INFO 3560 --- [http-nio-9002-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-05-21 23:06:15.127  INFO 3560 --- [http-nio-9002-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-05-21 23:06:15.147  INFO 3560 --- [http-nio-9002-exec-1] c.chenxii.jinghong.common.utils.LogUtil  : 【账户】查询用户 User(id=e6c10e85-e809-4301-a92a-ae95f957ba49, username=user001, password=12345, sex=保密, birthday=2000-01-01, lastLoginTime=Sun May 21 00:58:03 CST 2023, status=正常, token=null)
+2023-05-21 23:06:15.148  INFO 3560 --- [http-nio-9002-exec-1] c.chenxii.jinghong.common.utils.LogUtil  : 【商品评分】查询用户 User(id=e6c10e85-e809-4301-a92a-ae95f957ba49, username=user001, password=12345, sex=保密, birthday=2000-01-01, lastLoginTime=Sun May 21 00:58:03 CST 2023, status=正常, token=null)
+2023-05-21 23:10:14.095  INFO 3560 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-21 23:15:14.106  INFO 3560 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-21 23:20:14.130  INFO 3560 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-21 23:25:14.147  INFO 3560 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-21 23:30:14.157  INFO 3560 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-21 23:35:14.170  INFO 3560 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-21 23:40:14.163  INFO 3560 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-21 23:45:14.172  INFO 3560 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-05-21 23:49:09.790  INFO 3560 --- [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application JINGHONG-USER with eureka with status DOWN
+2023-05-21 23:49:09.790  INFO 3560 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1684684149790, current=DOWN, previous=UP]
+2023-05-21 23:49:09.791  INFO 3560 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_JINGHONG-USER/192.168.31.135:jinghong-user:9002: registering service...
+2023-05-21 23:49:09.804  INFO 3560 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_JINGHONG-USER/192.168.31.135:jinghong-user:9002 - registration status: 204
+2023-05-21 23:49:09.828  INFO 3560 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-05-21 23:49:09.834  INFO 3560 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-05-21 23:49:09.835  INFO 3560 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2023-05-21 23:49:12.842  INFO 3560 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2023-05-21 23:49:12.850  INFO 3560 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_JINGHONG-USER/192.168.31.135:jinghong-user:9002 - deregister  status: 200
+2023-05-21 23:49:12.861  INFO 3560 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient

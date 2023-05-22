@@ -20,6 +20,12 @@
         updated_time
     </sql>
 
+    <insert id="insert" parameterType="com.chenxii.jinghong.common.entity.Inventory">
+        insert into inventory(goods_no, count)
+        values (#{goodsNo},
+                #{count})
+    </insert>
+
     <update id="updateWhenCreate" parameterType="com.chenxii.jinghong.common.entity.OrderDetail">
         update inventory
         set count =
@@ -28,6 +34,7 @@
             when #{item.goodsNo} then count - #{item.count}
         </foreach>
         else count
+        end
         where goods_no in
         <foreach collection="orderDetailList" item="item" open="(" close=")" separator=",">
             #{item.goodsNo}

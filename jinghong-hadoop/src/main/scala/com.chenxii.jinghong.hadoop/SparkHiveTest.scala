@@ -15,7 +15,7 @@ object SparkHiveTest extends Serializable {
 
     println("连接成功")
 
-    val sql = "select * from jinghong.rate"
+    val sql = "select distinct uid from jinghong.rate where rate > 3"
     val result = sc.sql(sql)
     result.show()
     sc.stop()
